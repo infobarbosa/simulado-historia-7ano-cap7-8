@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Simulado de História · 7º ano · Caps. 7 e 8</title>
+  <meta name="description" content="Simulado gamificado de História (7º ano) sobre a conquista e a colonização espanhola e inglesa da América — capítulos 7 e 8." />
+  <meta name="theme-color" content="#2bb673" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%9C%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- ===================== TELA INICIAL ===================== -->
+    <section id="tela-inicio" class="tela tela-inicio ativa">
+      <div class="inicio-conteudo">
+        <div class="mascote" aria-hidden="true">
+          <!-- Mascote original: oncinha (tema mesoamericano) -->
+          <svg viewBox="0 0 160 160" width="150" height="150" role="img" aria-label="Mascote oncinha">
+            <ellipse cx="80" cy="140" rx="46" ry="10" fill="rgba(0,0,0,.08)"/>
+            <path d="M34 54 L22 24 L54 40 Z" fill="#f2a742"/>
+            <path d="M126 54 L138 24 L106 40 Z" fill="#f2a742"/>
+            <path d="M38 50 L30 32 L50 42 Z" fill="#7a3b16"/>
+            <path d="M122 50 L130 32 L110 42 Z" fill="#7a3b16"/>
+            <ellipse cx="80" cy="82" rx="54" ry="50" fill="#f2a742"/>
+            <ellipse cx="80" cy="96" rx="38" ry="34" fill="#fce9c8"/>
+            <circle cx="46" cy="60" r="5" fill="#7a3b16"/>
+            <circle cx="112" cy="66" r="4" fill="#7a3b16"/>
+            <circle cx="120" cy="92" r="5" fill="#7a3b16"/>
+            <circle cx="40" cy="92" r="4" fill="#7a3b16"/>
+            <circle cx="58" cy="74" r="12" fill="#fff"/>
+            <circle cx="102" cy="74" r="12" fill="#fff"/>
+            <circle cx="60" cy="76" r="6" fill="#28313a"/>
+            <circle cx="100" cy="76" r="6" fill="#28313a"/>
+            <circle cx="62" cy="74" r="2" fill="#fff"/>
+            <circle cx="102" cy="74" r="2" fill="#fff"/>
+            <path d="M72 92 Q80 100 88 92 Z" fill="#e0607a"/>
+            <path d="M80 96 Q80 104 72 108 M80 96 Q80 104 88 108" stroke="#7a3b16" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M60 104 Q70 112 80 108 Q90 112 100 104" stroke="#7a3b16" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h1 class="titulo-app">Simulado de História</h1>
+        <p class="subtitulo-app">7º ano · Capítulos 7 e 8<br><span>A conquista e a colonização da América</span></p>
+
+        <div class="inicio-stats">
+          <div class="stat-pill"><strong id="stat-total">0</strong><span>questões</span></div>
+          <div class="stat-pill"><strong>2</strong><span>capítulos</span></div>
+          <div class="stat-pill"><strong>❤️×5</strong><span>vidas</span></div>
+        </div>
+
+        <button id="btn-comecar" class="btn btn-primario btn-grande">Começar</button>
+
+        <div class="inicio-info">
+          <p>Em cada questão você pode tocar em <span class="chip-mini">+</span> para ler o conteúdo completo do livro, e em <span class="chip-mini chip-explique">Explique</span> para entender a resposta.</p>
+          <p class="fonte-ref">Fonte: Coleção Rotas — História, 7º ano (Edebê) · pp. 126–167</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TELA DO QUIZ ===================== -->
+    <section id="tela-quiz" class="tela tela-quiz">
+      <header class="topo">
+        <button id="btn-sair" class="icone-btn" aria-label="Voltar ao início" title="Voltar ao início">✕</button>
+        <div class="barra-progresso" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div id="progresso-preenchido" class="barra-preenchida"></div>
+        </div>
+        <div class="vidas" id="vidas" aria-label="Vidas restantes">
+          <span class="coracao">❤️</span><span id="vidas-num">5</span>
+        </div>
+      </header>
+
+      <main class="quiz-corpo">
+        <div class="quiz-meta">
+          <span class="chip-topico" id="q-topico">Tópico</span>
+          <span class="chip-pagina" id="q-pagina">p. 0</span>
+          <span class="chip-tipo" id="q-tipo">Múltipla escolha</span>
+        </div>
+
+        <div class="pergunta-linha">
+          <h2 class="pergunta" id="q-pergunta">Pergunta…</h2>
+          <button id="btn-mais" class="btn-mais" aria-expanded="false" aria-label="Ler o conteúdo completo relacionado">+</button>
+        </div>
+
+        <div id="conteudo-expandido" class="conteudo-expandido" hidden>
+          <div class="conteudo-cabecalho">
+            <span>📖 Conteúdo do livro <em id="conteudo-pagina"></em></span>
+            <button id="btn-fechar-conteudo" class="icone-btn pequeno" aria-label="Fechar conteúdo">✕</button>
+          </div>
+          <p id="conteudo-texto"></p>
+        </div>
+
+        <div class="opcoes" id="opcoes"></div>
+      </main>
+
+      <div class="rodape-acao">
+        <button id="btn-verificar" class="btn btn-primario btn-grande" disabled>Verificar</button>
+      </div>
+
+      <!-- Painel de feedback (sobe de baixo) -->
+      <div id="feedback" class="feedback" hidden>
+        <div class="feedback-topo">
+          <div class="feedback-icone" id="feedback-icone">✓</div>
+          <div class="feedback-texto">
+            <strong id="feedback-titulo">Correto!</strong>
+            <span id="feedback-sub"></span>
+          </div>
+        </div>
+        <div class="feedback-botoes">
+          <button id="btn-explique" class="btn btn-explique">💡 Explique</button>
+          <button id="btn-continuar" class="btn btn-continuar">Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TELA DE RESULTADO ===================== -->
+    <section id="tela-resultado" class="tela tela-resultado">
+      <div class="resultado-conteudo">
+        <div class="mascote-mini" id="resultado-emoji">🎉</div>
+        <h2 id="resultado-titulo">Muito bem!</h2>
+        <p id="resultado-frase" class="resultado-frase"></p>
+
+        <div class="resultado-cards">
+          <div class="res-card res-acertos">
+            <strong id="res-acertos">0/0</strong><span>acertos</span>
+          </div>
+          <div class="res-card res-percent">
+            <strong id="res-percent">0%</strong><span>aproveitamento</span>
+          </div>
+          <div class="res-card res-xp">
+            <strong id="res-xp">0</strong><span>XP</span>
+          </div>
+        </div>
+
+        <div id="revisao" class="revisao"></div>
+
+        <div class="resultado-acoes">
+          <button id="btn-refazer" class="btn btn-primario btn-grande">Refazer simulado</button>
+          <button id="btn-revisar-erros" class="btn btn-secundario">Ver só os erros</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Modal de explicação -->
+  <div id="modal-explique" class="modal" hidden>
+    <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+      <div class="modal-cabecalho">
+        <h3 id="modal-titulo">💡 Explicação</h3>
+        <button id="btn-fechar-modal" class="icone-btn" aria-label="Fechar">✕</button>
+      </div>
+      <p id="modal-texto"></p>
+      <div class="modal-conteudo-extra">
+        <button id="btn-modal-conteudo" class="btn-link">📖 Ver conteúdo completo do livro</button>
+        <p id="modal-conteudo-texto" hidden></p>
+      </div>
+      <button id="btn-modal-ok" class="btn btn-primario">Entendi</button>
+    </div>
+  </div>
+
+  <!-- Modal de vidas -->
+  <div id="modal-vidas" class="modal" hidden>
+    <div class="modal-caixa modal-vidas-caixa" role="dialog" aria-modal="true">
+      <div class="mascote-mini">💔</div>
+      <h3>Você ficou sem vidas!</h3>
+      <p>Sem problema — estudar é praticar. Você pode continuar de onde parou ou recomeçar do zero.</p>
+      <button id="btn-continuar-praticando" class="btn btn-primario">Continuar praticando</button>
+      <button id="btn-recomecar-vidas" class="btn btn-secundario">Recomeçar</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
